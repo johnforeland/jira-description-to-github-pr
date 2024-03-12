@@ -1,5 +1,6 @@
-name: 'Jira description to pr'
-description: 'Add jira description to Pull request'
+name: 'jira-description-to-github-pr'
+author: 'johnforeland'
+description: 'Copy Jira descriptions to a Pull Request description'
 branding:
   icon: "check-circle"
   color: "purple"
@@ -16,12 +17,6 @@ inputs:
   jiraToken:
     description: "Jira token"
     required: true
-  jiraUsername:
-    description: "Jira username"
-    required: true
-  sonarQubeUrl:
-    description: "organization's sonarqube url"
-    required: false
 runs:
   using: 'node20'
   main: 'dist/index.js'

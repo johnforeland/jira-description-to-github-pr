@@ -1,17 +1,37 @@
 {
   "name": "jira-description-to-github-pr",
-  "version": "1.0.0",
-  "description": "Jira description to Pull request description",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "johnforeland",
+  "description": "Copy Jira descriptions to a Pull Request description",
   "dependencies": {
     "@actions/core": "^1.10.0",
     "@actions/github": "^5.1.1",
     "@octokit/rest": "^20.0.1"
-  }
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "keywords": [
+    "jira",
+    "github",
+    "description"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnforeland/jira-description-to-github-pr.git"
+  },
+  "scripts": {
+    "all": "npm run format:write && npm run lint && npm run package",
+    "bundle": "npm run format:write && npm run package",
+    "format:check": "prettier --check **/*.ts",
+    "format:write": "prettier --write **/*.ts",
+    "lint": "npx eslint . -c ./.github/linters/.eslintrc.yml",
+    "package": "ncc build src/index.ts --license licenses.txt",
+    "package:watch": "npm run package -- --watch",
+    "preinstall": "cp scripts/pre-commit .git/hooks/ && chmod +x .git/hooks/pre-commit && echo 'hook copied'"
+  },
+  "version": "1.0.0"
 }
