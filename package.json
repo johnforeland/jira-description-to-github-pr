@@ -1,5 +1,5 @@
 {
-  "name": "jira-description",
+  "name": "jira-description-to-github-pr",
   "version": "1.0.0",
   "description": "Jira description to Pull request description",
   "main": "index.js",
