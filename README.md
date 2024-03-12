@@ -1,6 +1,8 @@
 # jira-description-to-github-pr
 
-Forked from [ks-keshava-rao/Jira-description](https://github.com/ks-keshava-rao/Jira-description).
+- Forked from [ks-keshava-rao/Jira-description](https://github.com/ks-keshava-rao/Jira-description)
+- With inspiration and code stealing from
+  [cakeinpanic/jira-description-action](https://github.com/cakeinpanic/jira-description-action)
 
 ## Example Workflow
 
@@ -41,4 +43,6 @@ jobs:
 
 ## Markdown Compatability
 
-This build makes use of Jira REST API V2, which means that the Markdown formatting in Jira and GitHub pull requests may not perfectly align. While certain advanced formatting features may not translate precisely, basic elements like plain text, bullet points, and paragraphs remain consistent between the two platforms.
+This build makes use of Jira REST API V2, which means that the Markdown formatting in Jira and GitHub pull requests may
+not perfectly align. While certain advanced formatting features may not translate precisely, basic elements like plain
+text, bullet points, and paragraphs remain consistent between the two platforms.
