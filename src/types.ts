@@ -1,9 +1,3 @@
-export enum ESource {
-  branch = 'branch',
-  prTitle = 'pr-title',
-  both = 'both'
-}
-
 export interface PullRequestParams {
   number: number
   html_url?: string
@@ -60,23 +54,23 @@ export namespace JIRA {
     name: string
   }
 
+  export interface fields {
+    summary: string
+    description: string
+    status: IssueStatus
+    priority: IssuePriority
+    issuetype: IssueType
+    project: IssueProject
+    labels: string[]
+    [k: string]: unknown
+  }
   export interface Issue {
     id: string
     key: string
     self: string
-    fields: {
-      summary: string
-      description: string
-      status: IssueStatus
-      priority: IssuePriority
-      issuetype: IssueType
-      project: IssueProject
-      labels: string[]
-      [k: string]: unknown
-    }
+    fields: Partial<fields>
   }
 }
-
 export interface JIRADetails {
   key: string
   summary: string

@@ -4,10 +4,13 @@ import { RestEndpointMethodTypes } from '@octokit/plugin-rest-endpoint-methods/d
 import { getInputs } from './action-inputs'
 import { JIRA } from './types'
 import { IGithubData, PullRequestParams } from './types'
+import { isRunningTest } from './utils'
 
 export class GithubConnector {
   githubData: IGithubData = {} as IGithubData
   octokit: InstanceType<typeof GitHub>
+  jira_issue!: JIRA.Issue
+  jira_ticket_url!: string
 
   constructor() {
     const { GITHUB_TOKEN } = getInputs()
@@ -15,20 +18,12 @@ export class GithubConnector {
     this.githubData = this.getGithubData()
   }
 
-  public set jira_issue(jira_issue: JIRA.Issue) {
-    this.jira_issue = jira_issue
-  }
-
-  public set jira_ticket_url(jira_ticket_url: string) {
-    this.jira_ticket_url = jira_ticket_url
-  }
-
   async updateDescription() {
     await this.callout()
   }
 
   async callout() {
-    const { owner, repo, pull_number } = this.githubData
+    const { owner, repo, pull_number } = this.githubData // TODO: use as input
     const body = this.body
 
     const prData: RestEndpointMethodTypes['pulls']['update']['parameters'] = {
@@ -38,7 +33,9 @@ export class GithubConnector {
       body
     }
 
-    this.octokit.rest.pulls.update(prData)
+    if (!isRunningTest()) {
+      await this.octokit.rest.pulls.update(prData)
+    }
   }
 
   get body() {
@@ -56,7 +53,6 @@ export class GithubConnector {
     if (context?.payload?.organization) {
       owner = context?.payload?.organization?.login
     } else {
-      console.log('Could not find organization, using repository owner instead.')
       owner = context.payload.repository?.owner.login
     }
 

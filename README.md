@@ -27,20 +27,20 @@ jobs:
       - name: Update PR description
         uses: johnforeland/jira-description-to-github-pr@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          jiraToken: ${{ secrets.JIRA_API_TOKEN }}
-          jiraId: ${{ env.JIRA_ID }}
-          orgUrl: https://testcompany.atlassian.net
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          jira-token: ${{ secrets.JIRA_API_TOKEN }}
+          jira-ticket-id: ${{ env.JIRA_ID }}
+          jira-base-url: https://testcompany.atlassian.net
 ```
 
 ## Inputs
 
-| Name        | Description                                                                                                                              | Example                           | Required |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- | -------- |
-| `token`     | GitHub Token needed to update Pull Requests                                                                                              | ${{ secrets.GITHUB_TOKEN }}       | Yes      |
-| `jiraId`    | Jira ticket ID                                                                                                                           | `TKP-123`                         | Yes      |
-| `orgUrl`    | Organisation's sub-domain for Jira.                                                                                                      | https://testcompany.atlassian.net | Yes      |
-| `jiraToken` | Jira API token, see [Atlassian Docs](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/) | `username:token`                  | Yes      |
+| Name             | Description                                                                                                                              | Example                           | Required |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- | -------- |
+| `github-token`   | GitHub Token needed to update Pull Requests                                                                                              | ${{ secrets.GITHUB_TOKEN }}       | Yes      |
+| `jira-token`     | Jira API token, see [Atlassian Docs](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/) | `username:token`                  | Yes      |
+| `jira-ticket-id` | Jira ticket ID                                                                                                                           | `TKP-123`                         | Yes      |
+| `jira-base-url`  | Organisation's sub-domain for Jira.                                                                                                      | https://testcompany.atlassian.net | Yes      |
 
 ## Markdown Compatability
 

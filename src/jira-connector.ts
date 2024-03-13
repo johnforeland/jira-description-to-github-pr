@@ -23,6 +23,7 @@ export class JiraConnector {
 
   async callout() {
     const response = await fetch(this.api_url, {
+      method: 'GET',
       headers: {
         Authorization: `Basic ${this.token}`
       }
