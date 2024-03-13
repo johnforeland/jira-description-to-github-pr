@@ -62,7 +62,7 @@ export class GithubConnector {
 
     return {
       eventName,
-      repo: repository,
+      repo: repository?.name,
       owner,
       pullRequest: pullRequest as PullRequestParams,
       pull_number: pullRequest?.number || 0

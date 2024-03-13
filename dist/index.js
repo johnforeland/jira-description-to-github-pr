@@ -29151,7 +29151,7 @@ class GithubConnector {
         }
         return {
             eventName,
-            repo: repository,
+            repo: repository?.name,
             owner,
             pullRequest: pullRequest,
             pull_number: pullRequest?.number || 0
