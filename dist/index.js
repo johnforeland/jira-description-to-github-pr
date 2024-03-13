@@ -29113,6 +29113,7 @@ class GithubConnector {
     octokit;
     jira_issue;
     jira_ticket_url;
+    jira_ticket_id;
     constructor() {
         const { GITHUB_TOKEN } = (0, action_inputs_1.getInputs)();
         this.octokit = (0, github_1.getOctokit)(GITHUB_TOKEN);
@@ -29135,7 +29136,7 @@ class GithubConnector {
         }
     }
     get body() {
-        return `# Description\n\n### ${this.jira_issue.fields.summary}\n\n ${this.jira_issue.fields.description}\n\n## Jira Ticket\n${this.jira_ticket_url}`;
+        return `# [[${this.jira_ticket_id}] ${this.jira_issue.fields.summary}](${this.jira_ticket_url})\n\n${this.jira_issue.fields.description}`;
     }
     getGithubData() {
         const { eventName, payload: { repository, pull_request: pullRequest } } = github_1.context;
@@ -29248,6 +29249,7 @@ async function run() {
     const githubConnector = new github_connector_1.GithubConnector();
     githubConnector.jira_issue = jiraConnector.jira_issue;
     githubConnector.jira_ticket_url = jiraConnector.ticket_url;
+    githubConnector.jira_ticket_id = jiraConnector.ticket_id;
     await githubConnector.updateDescription();
 }
 exports.run = run;

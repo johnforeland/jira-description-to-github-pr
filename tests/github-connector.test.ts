@@ -28,13 +28,29 @@ describe('GithubConnector()', () => {
     ;(getInputs as any).mockImplementation(() => MOCK_GITHUB_ACTION_INPUT)
     connector = new GithubConnector()
     expect(getOctokit).toHaveBeenCalledWith(MOCK_GITHUB_ACTION_INPUT.GITHUB_TOKEN)
+
+    connector.jira_issue = MOCK_JIRA_ISSUE
+    connector.jira_ticket_url = 'https://testcompany.atlassian.net/browse/TKP-123'
+    connector.jira_ticket_id = MOCK_GITHUB_ACTION_INPUT.JIRA_TICKET_ID
+
+    expect(connector.jira_ticket_id).not.toBeUndefined()
+    expect(connector.jira_ticket_id).toEqual(MOCK_GITHUB_ACTION_INPUT.JIRA_TICKET_ID)
+    expect(connector.jira_ticket_url).not.toBeUndefined()
+  })
+
+  it('runs body()', () => {
+    ;(getInputs as any).mockImplementation(() => MOCK_GITHUB_ACTION_INPUT)
+    let body = connector.body
+    expect(body).toEqual(
+      `# [[TKP-123] summary](https://testcompany.atlassian.net/browse/TKP-123)\n\na description of the issue`
+    )
+    expect(body).toEqual(
+      `# [[${connector.jira_ticket_id}] ${connector.jira_issue.fields.summary}](${connector.jira_ticket_url})\n\n${connector.jira_issue.fields.description}`
+    )
   })
 
   it('runs updateDescription()', () => {
     ;(getInputs as any).mockImplementation(() => MOCK_GITHUB_ACTION_INPUT)
-
-    connector.jira_issue = MOCK_JIRA_ISSUE
-    connector.jira_ticket_url = 'https://testcompany.atlassian.net/browse/TKP-123'
     connector.updateDescription()
   })
 })

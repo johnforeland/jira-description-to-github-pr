@@ -30,6 +30,7 @@ describe('JiraConnector()', () => {
     expect(connector.api_url).not.toBeUndefined()
     expect(connector.token).not.toBeUndefined()
     expect(connector.ticket_id).not.toBeUndefined()
+    expect(connector.ticket_id).toEqual(MOCK_GITHUB_ACTION_INPUT.JIRA_TICKET_ID)
     expect(connector.ticket_url).not.toBeUndefined()
   })
 

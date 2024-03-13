@@ -11,6 +11,7 @@ export class GithubConnector {
   octokit: InstanceType<typeof GitHub>
   jira_issue!: JIRA.Issue
   jira_ticket_url!: string
+  jira_ticket_id!: string
 
   constructor() {
     const { GITHUB_TOKEN } = getInputs()
@@ -39,7 +40,7 @@ export class GithubConnector {
   }
 
   get body() {
-    return `# Description\n\n### ${this.jira_issue.fields.summary}\n\n ${this.jira_issue.fields.description}\n\n## Jira Ticket\n${this.jira_ticket_url}`
+    return `# [[${this.jira_ticket_id}] ${this.jira_issue.fields.summary}](${this.jira_ticket_url})\n\n${this.jira_issue.fields.description}`
   }
 
   private getGithubData(): IGithubData {
