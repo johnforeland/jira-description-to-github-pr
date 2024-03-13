@@ -5,16 +5,16 @@ branding:
   icon: "check-circle"
   color: "purple"
 inputs:
-  token:
+  github-token:
     description: "Github access token"
     required: true
-  jiraId:
+  jira-ticket-id:
     description: "Jira issue id"
     required: true
-  orgUrl: 
+  jira-base-url: 
     description: "organization's jira url"
     required: true
-  jiraToken:
+  jira-token:
     description: "Jira token"
     required: true
 runs:
