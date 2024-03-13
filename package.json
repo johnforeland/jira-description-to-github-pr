@@ -1,5 +1,6 @@
 {
   "name": "jira-description-to-github-pr",
+  "version": "1.0.0",
   "author": "johnforeland",
   "description": "Copy Jira descriptions to a Pull Request description",
   "dependencies": {
@@ -55,6 +56,5 @@
     "package": "ncc build src/index.ts --license licenses.txt",
     "package:watch": "npm run package -- --watch",
     "preinstall": "cp scripts/pre-commit .git/hooks/ && chmod +x .git/hooks/pre-commit && echo 'hook copied'"
-  },
-  "version": "1.0.0"
+  }
 }
