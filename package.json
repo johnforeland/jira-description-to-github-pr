@@ -1,6 +1,6 @@
 {
   "name": "jira-description-to-github-pr",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "author": "johnforeland",
   "description": "Copy Jira descriptions to a Pull Request description",
   "dependencies": {

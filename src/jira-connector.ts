@@ -33,9 +33,7 @@ export class JiraConnector {
       const issue = (await response.json()) as JIRA.Issue
       return issue
     } else {
-      core.setFailed(
-        `Failed to fetch response from Jira API. Please check the organization URL, Jira token, and Jira username. Response: ${response}`
-      )
+      core.setFailed('Failed to fetch response from Jira API. Response: ' + JSON.stringify(response, null, 2))
       process.exit(1)
     }
   }
