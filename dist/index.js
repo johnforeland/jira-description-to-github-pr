@@ -29224,7 +29224,7 @@ class JiraConnector {
             return issue;
         }
         else {
-            core.setFailed('Failed to fetch response from Jira API. Response: ' + JSON.stringify(response, null, 2));
+            core.setFailed(`Failed to fetch response from Jira API. HTTP Error: ${response.status}. Error Message: ${response.statusText}`);
             process.exit(1);
         }
     }
