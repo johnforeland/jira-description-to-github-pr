@@ -4,7 +4,7 @@ import { RestEndpointMethodTypes } from '@octokit/plugin-rest-endpoint-methods/d
 import { getInputs } from './action-inputs'
 import { JIRA } from './types'
 import { IGithubData, PullRequestParams } from './types'
-import { isRunningTest } from './utils'
+import { isRunningTest, jiraToMarkdown } from './utils'
 
 export class GithubConnector {
   githubData: IGithubData = {} as IGithubData
@@ -40,7 +40,8 @@ export class GithubConnector {
   }
 
   get body() {
-    return `# [[${this.jira_ticket_id}] ${this.jira_issue.fields.summary}](${this.jira_ticket_url})\n\n${this.jira_issue.fields.description}`
+    let body = jiraToMarkdown(this.jira_issue.fields.description)
+    return `# [[${this.jira_ticket_id}] ${this.jira_issue.fields.summary}](${this.jira_ticket_url})\n\n${body}`
   }
 
   private getGithubData(): IGithubData {
