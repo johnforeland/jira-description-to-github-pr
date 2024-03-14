@@ -40,8 +40,8 @@ export class GithubConnector {
   }
 
   get body() {
-    let body = jiraToMarkdown(this.jira_issue.fields.description)
-    return `# [[${this.jira_ticket_id}] ${this.jira_issue.fields.summary}](${this.jira_ticket_url})\n\n${body}`
+    let description = jiraToMarkdown(this.jira_issue.fields.description)
+    return `## ${this.jira_issue.fields.summary} ([${this.jira_ticket_id}](${this.jira_ticket_url}))\n\n` + description
   }
 
   private getGithubData(): IGithubData {

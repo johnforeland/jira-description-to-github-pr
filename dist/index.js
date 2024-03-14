@@ -29345,8 +29345,8 @@ class GithubConnector {
         }
     }
     get body() {
-        let body = (0, utils_1.jiraToMarkdown)(this.jira_issue.fields.description);
-        return `# [[${this.jira_ticket_id}] ${this.jira_issue.fields.summary}](${this.jira_ticket_url})\n\n${body}`;
+        let description = (0, utils_1.jiraToMarkdown)(this.jira_issue.fields.description);
+        return `## ${this.jira_issue.fields.summary} ([${this.jira_ticket_id}](${this.jira_ticket_url}))\n\n` + description;
     }
     getGithubData() {
         const { eventName, payload: { repository, pull_request: pullRequest } } = github_1.context;
