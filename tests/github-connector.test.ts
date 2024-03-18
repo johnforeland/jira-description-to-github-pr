@@ -42,11 +42,10 @@ describe('GithubConnector()', () => {
     ;(getInputs as any).mockImplementation(() => MOCK_GITHUB_ACTION_INPUT)
     let body = connector.body
     expect(body).toEqual(
-      `## summary ([TKP-123](https://testcompany.atlassian.net/browse/TKP-123))\n\na description of the issue`
+      `## Jira\n\nsummary ([TKP-123](https://testcompany.atlassian.net/browse/TKP-123))\n\n## Description\n\na description of the issue`
     )
     expect(body).toEqual(
-      `## ${connector.jira_issue.fields.summary} ([${connector.jira_ticket_id}](${connector.jira_ticket_url}))\n\n` +
-        connector.jira_issue.fields.description
+      `## Jira\n\n${connector.jira_issue.fields.summary} ([${connector.jira_ticket_id}](${connector.jira_ticket_url}))\n\n## Description\n\n${connector.jira_issue.fields.description}`
     )
   })
 
